@@ -1,0 +1,40 @@
+type LoginRequest {
+	UserName string `json:"userName"`
+	Password string `json:"password"`
+}
+
+type LoginResponse {
+	UserName string `json:"userName"`
+	UserId   int64  `json:"userId"`
+	Token    string `json:"token"`
+}
+
+type RegisterRequest {
+	UserName  string `json:"userName"`
+	Password1 string `json:"password"`
+	Password2 string `json:"password2"`
+}
+
+type RegisterResponse {
+	UserName string `json:"userName"`
+	UserId   int64  `json:"userId"`
+}
+
+//相当于给login没有加上jwt校验
+@server (
+	prefix: /api/users
+)
+service users {
+	@handler login
+	post /login (LoginRequest) returns (LoginResponse)
+}
+
+@server (
+	prefix: /api/users
+)
+service users {
+	@handler register
+	post /register (RegisterRequest) returns (RegisterResponse)
+}
+
+// goctl api go -api v1.api -dir .

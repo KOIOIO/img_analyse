@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./user";
+
+message userLoginRequest{
+  string username = 1;
+  string password1 = 2;
+}
+
+message userLoginResponse{
+  string username=1;
+  uint32 user_id=2;// 添加token字段
+  string msg = 3;
+}
+
+message userRegisterRequest{
+  string username = 1;
+  string password1 = 2;
+  string password2 = 3;
+}
+
+message userRegisterResponse{
+  string username=1;
+  uint32 user_id=2;
+  string msg=3;
+}
+
+
+service user{
+  rpc userLogin(userLoginRequest) returns (userLoginResponse);
+  rpc userRegister(userRegisterRequest) returns (userRegisterResponse);
+}

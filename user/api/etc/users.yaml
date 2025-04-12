@@ -1,0 +1,19 @@
+Name: users
+Host: 0.0.0.0
+Port: 8888
+UserRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc
+
+Redis:
+  Addr: 127.0.0.1:6379
+  Password: ""
+  DB: 0
+  PoolSize: 100
+  MinIdleConns: 10
+
+Auth:
+  AccessSecret: dfsfdsdfg
+  AccessExpire: 86400
